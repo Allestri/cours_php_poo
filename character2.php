@@ -14,17 +14,16 @@ class Personnage
 	
 	public function hydrate(array $donnees)
 	{
-		if(isset($donnees['id']))
+		foreach($donnees as $key => $value)
 		{
-			$this->setId($donnees['id']);
-		}
-		if(isset($donnees['nom']))
-		{
-			$this->setNom($donnees['nom']);
-		}
-		if(isset($donnees['degats']))
-		{
-			$this->setDegats($donnees['degats']);
+			// Nom du setter correspondant à l'attribut.
+			$method = 'set'.ucfirst($key);
+			// Si le setter existe ...
+			if(method_exists($this, $method))
+			{
+				// Appelle le setter
+				$this->$method($value);
+			}
 		}
 	}
 	
