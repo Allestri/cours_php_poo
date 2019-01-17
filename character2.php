@@ -12,11 +12,20 @@ class Personnage
 	
 /// Constructeur
 	
-	public function __construct($nom, $forcePerso) // Constructeur demandant 6 paramètres
+	public function hydrate(array $donnees)
 	{
-		$this->setNom($nom);
-		$this->setForcePerso($forcePerso);
-		$this->_experience = 1; // Initialisation de l'experience à 1.
+		if(isset($donnees['id']))
+		{
+			$this->setId($donnees['id']);
+		}
+		if(isset($donnees['nom']))
+		{
+			$this->setNom($donnees['nom']);
+		}
+		if(isset($donnees['degats']))
+		{
+			$this->setDegats($donnees['degats']);
+		}
 	}
 	
 
